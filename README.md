@@ -1,4 +1,4 @@
-# [💻 LiveTerm - build terminal styled websites in minutes!](https://liveterm.vercel.app)
+# [💻 Portfolio.sh - build terminal styled websites in minutes!](https://portfolio.adi-kulkarni.in)
 
 Highly customizable, easy-to-use, and minimal terminal styled website template, powered by Next.js.
 
@@ -6,7 +6,7 @@ Building a simple website with LiveTerm only takes **minutes**, and you only nee
 
 LiveTerm can be used to build a variety of websites:
 
-- [personal website](https://cveinnt.com)
+- [personal website](https://adi-kulkarni.in)
 - [browser startpage](https://livetermstart.vercel.app/)
 - [project page](https://liveterm.vercel.app/)
 - or maybe just a cool browser music player...be creative!
@@ -22,23 +22,23 @@ Feel free to play with the web demo above!
 
 <p align="center">
 <img src="./demo/cveinnt.png" width="600"><br>
-<strong><a href="https://cveinnt.com" target=_blank>my personal website</a></strong>
+<strong><a href="https://adi-kulkarni.in" target=_blank>my personal website</a></strong>
 </p>
 
-## 🚀 Ship your LiveTerm site in less than 5 minutes
+## 🚀 Ship your Portfolio site in less than 5 minutes
 
 LiveTerm requires the `yarn` package manager. You can install `yarn` [here](https://classic.yarnpkg.com/lang/en/docs/install/).
 
-Simply run the following commmand in your terminal:
+Simply run the following command in your terminal:
 
 ```bash
-sh -c "$(curl -fsSL https://raw.github.com/Cveinnt/LiveTerm/main/install/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/adikul1023/Portfolio/main/install/install.sh)"
 ```
 
 This will install LiveTerm to the current directory. You can start building your website with:
 
 ```bash
-cd LiveTerm && yarn dev
+cd Portfolio && yarn dev
 ```
 
 Start editing `config.json` and try saving and see the updated changes!
@@ -46,7 +46,7 @@ Start editing `config.json` and try saving and see the updated changes!
 Alternatively, you can clone this repository to a location of your choosing
 
 ```bash
-git clone https://github.com/Cveinnt/LiveTerm.git && cd LiveTerm
+git clone https://github.com/adikul1023/Portfolio.git && cd LiveTerm
 ```
 
 Then install dependencies and start developing there:
@@ -129,3 +129,4 @@ You can also connect your github account to vercel and have vercel automatically
 ## Credit
 
 Based on M4TT72's awesome [Terminal](https://github.com/m4tt72/terminal).
+

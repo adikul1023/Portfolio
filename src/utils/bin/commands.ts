@@ -48,7 +48,6 @@ export const donate = async (args: string[]): Promise<string> => {
   return `thank you for your interest. 
 here are the ways you can support my work:
 - <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.paypal}" target="_blank">paypal</a></u>
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.patreon}" target="_blank">patreon</a></u>
 `;
 };
 
@@ -138,20 +137,123 @@ export const sudo = async (args?: string[]): Promise<string> => {
   return `Permission denied: with little power comes... no responsibility? `;
 };
 
+export const su = async (args?: string[]): Promise<string> => {
+  window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank'); // Rickroll
+  return `Nice try, but with little power comes... no responsibility?`;
+};
+
+export const neofetch = async (args?: string[]): Promise<string> => {
+  return `
+OS: Portfolio.sh  
+Kernel: 6.1.12  
+Uptime: ∞  
+Packages: 1337  
+Shell: bash  
+CPU: Intel Core i7-1337  
+GPU: NVIDIA RTX 4090  
+Memory: 64GB RAM  
+Terminal: This one :)  
+  `;
+};
+
+export const hack = async (args?: string[]): Promise<string> => {
+  return `Initiating hack sequence...  
+[█████████-------] 50%  
+[███████████████] 100%  
+Access Granted! (Just kidding 😆)`;
+};
+
+export const matrix = async (args?: string[]): Promise<string> => {
+  return `01001000 01100101 01101100 01101100 01101111  
+01110111 01101111 01110010 01101100 01100100`;
+};
+
+export const gui = async (args?: string[]): Promise<string> => {
+  window.open("http://adi-kulkarni.in", "_blank");
+  return "Opening graphical interface...";
+};
+
+
+export const df = async (args?: string[]): Promise<string> => {
+  return `
+Filesystem      Size  Used Avail Use% Mounted on  
+/dev/sda1      100G   69G   31G  69%  /  
+tmpfs           16G    0   16G   0%  /tmp  
+/dev/sdb1      1.0T  500G  500G  50%  /mnt/storage  
+  `;
+};
+
+export const top = async (args?: string[]): Promise<string> => {
+  return `
+PID   USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND  
+1337  visitor   20   0  163944  12040   8016 S   0.7  0.2   0:01.12 portfolio.sh  
+69    root      20   0  452888  39488   9996 S   0.1  0.7   0:00.99 fake-process  
+  `;
+};
+
+export const ping = async (args?: string[]): Promise<string> => {
+  return `PING google.com (142.250.187.142): 56 data bytes  
+64 bytes from 142.250.187.142: icmp_seq=1 ttl=118 time=14.2 ms  
+64 bytes from 142.250.187.142: icmp_seq=2 ttl=118 time=15.0 ms  
+64 bytes from 142.250.187.142: icmp_seq=3 ttl=118 time=14.8 ms  
+--- google.com ping statistics ---  
+3 packets transmitted, 3 received, 0% packet loss, time 3000ms  
+rtt min/avg/max/mdev = 14.2/14.6/15.0/0.3 ms`;
+};
+
+export const cat = async (args: string[]): Promise<string> => {
+  if (args[0] === "readme.txt") {
+    return `Welcome to my portfolio! Type 'help' to see available commands.`;
+  } else {
+    return `cat: ${args[0]}: No such file or directory`;
+  }
+};
+
+let commandHistory: string[] = [];
+
+export const history = async (args?: string[]): Promise<string> => {
+  return commandHistory.join('\n');
+};
+
+export const saveCommand = (cmd: string) => {
+  commandHistory.push(cmd);
+};
+
+
+export const pwd = async (): Promise<string> => {
+  const locations = [
+    "/home/your/mom's/house",
+    "/root/but-you-ain't-root",
+    "/var/log/where-am-i",
+    "/usr/bin/looking-for-love",
+    "/dev/null/404-not-found",
+    "/opt/this-is-not-windows",
+    "/home/visitor/lost-and-found"
+  ];
+  
+  // Pick a random location
+  const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+  return randomLocation;
+};
+
+
 // Banner
 export const banner = (args?: string[]): string => {
   return `
-█████        ███                       ███████████                                   
-░░███        ░░░                       ░█░░░███░░░█                                   
- ░███        ████  █████ █████  ██████ ░   ░███  ░   ██████  ████████  █████████████  
- ░███       ░░███ ░░███ ░░███  ███░░███    ░███     ███░░███░░███░░███░░███░░███░░███ 
- ░███        ░███  ░███  ░███ ░███████     ░███    ░███████  ░███ ░░░  ░███ ░███ ░███ 
- ░███      █ ░███  ░░███ ███  ░███░░░      ░███    ░███░░░   ░███      ░███ ░███ ░███ 
- ███████████ █████  ░░█████   ░░██████     █████   ░░██████  █████     █████░███ █████
-░░░░░░░░░░░ ░░░░░    ░░░░░     ░░░░░░     ░░░░░     ░░░░░░  ░░░░░     ░░░░░ ░░░ ░░░░░ 
+ ███████████                      █████       ██████           ████   ███                      █████     
+░░███░░░░░███                    ░░███       ███░░███         ░░███  ░░░                      ░░███      
+ ░███    ░███  ██████  ████████  ███████    ░███ ░░░   ██████  ░███  ████   ██████      █████  ░███████  
+ ░██████████  ███░░███░░███░░███░░░███░    ███████    ███░░███ ░███ ░░███  ███░░███    ███░░   ░███░░███ 
+ ░███░░░░░░  ░███ ░███ ░███ ░░░   ░███    ░░░███░    ░███ ░███ ░███  ░███ ░███ ░███   ░░█████  ░███ ░███ 
+ ░███        ░███ ░███ ░███       ░███ ███  ░███     ░███ ░███ ░███  ░███ ░███ ░███    ░░░░███ ░███ ░███ 
+ █████       ░░██████  █████      ░░█████   █████    ░░██████  █████ █████░░██████  ██ ██████  ████ █████
+░░░░░         ░░░░░░  ░░░░░        ░░░░░   ░░░░░      ░░░░░░  ░░░░░ ░░░░░  ░░░░░░  ░░ ░░░░░░  ░░░░ ░░░░░ 
+                                                                                                         
 
 Type 'help' to see the list of available commands.
 Type 'sumfetch' to display summary.
 Type 'repo' or click <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.repo}" target="_blank">here</a></u> for the Github repository.
+If you're not familiar with the CLI, type 'gui' to open the graphical interface.
+
 `;
 };

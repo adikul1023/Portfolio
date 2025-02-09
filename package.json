@@ -1,11 +1,11 @@
 {
-  "name": "liveterm",
+  "name": "portfolio.sh",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
-    "name": "Vincent Wu",
-    "url": "https://cveinnt.com",
-    "email": "contact@wensenwu.com"
+    "name": "Adi Kulkarni",
+    "url": "https://portfolio.adi-kulkarni.in",
+    "email": "adi@adi-kulkarni.in"
   },
   "scripts": {
     "dev": "next dev",
@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^4.3.1"
   },
   "devDependencies": {
