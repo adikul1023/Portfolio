@@ -3,7 +3,7 @@ import * as bin from './bin';
 
 export const shell = async (
   command: string,
-  setHistory: (value: string) => void,
+  setHistory: (value: string | React.ReactNode, component?: React.ReactNode) => void,
   clearHistory: () => void,
   setCommand: React.Dispatch<React.SetStateAction<string>>,
 ) => {
@@ -20,7 +20,12 @@ export const shell = async (
     );
   } else {
     const output = await bin[args[0]](args.slice(1));
-    setHistory(output);
+    // Check if output is a React component
+    if (React.isValidElement(output)) {
+      setHistory('', output);
+    } else {
+      setHistory(output);
+    }
   }
 
   setCommand('');

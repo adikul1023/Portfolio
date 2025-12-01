@@ -5,14 +5,24 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: 'media',
   theme: {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       ...colors,
     },
-    extend: {},
+    extend: {
+      colors: {
+        'theme-bg': 'var(--bg-color)',
+        'theme-fg': 'var(--fg-color)',
+        'theme-yellow': 'var(--yellow-color)',
+        'theme-green': 'var(--green-color)',
+        'theme-gray': 'var(--gray-color)',
+        'theme-blue': 'var(--blue-color)',
+        'theme-red': 'var(--red-color)',
+      },
+    },
   },
   variants: {
     extend: {},

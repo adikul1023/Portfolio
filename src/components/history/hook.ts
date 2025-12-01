@@ -10,16 +10,30 @@ export const useHistory = (defaultValue: Array<History>) => {
     history,
     command,
     lastCommandIndex,
-    setHistory: (value: string) =>
-      setHistory([
-        ...history,
-        {
-          id: history.length,
-          date: new Date(),
-          command,
-          output: value,
-        },
-      ]),
+    setHistory: (value: string | React.ReactNode, component?: React.ReactNode) => {
+      if (component) {
+        setHistory([
+          ...history,
+          {
+            id: history.length,
+            date: new Date(),
+            command,
+            output: '',
+            component,
+          },
+        ]);
+      } else {
+        setHistory([
+          ...history,
+          {
+            id: history.length,
+            date: new Date(),
+            command,
+            output: typeof value === 'string' ? value : '',
+          },
+        ]);
+      }
+    },
     setCommand,
     setLastCommandIndex,
     clearHistory: () => setHistory([]),

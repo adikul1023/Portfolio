@@ -8,6 +8,30 @@
   display: swap;
 }
 
+:root {
+  /* Gruvbox Dark - Default Theme */
+  --bg-color: #1c1c1c;
+  --fg-color: #EBDBB2;
+  --yellow-color: #D79921;
+  --green-color: #98971A;
+  --gray-color: #A89984;
+  --blue-color: #458588;
+  --red-color: #CA2124;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Gruvbox Light */
+    --bg-color: #FBF1C9;
+    --fg-color: #3C3836;
+    --yellow-color: #D79921;
+    --green-color: #98971A;
+    --gray-color: #7C6F64;
+    --blue-color: #458588;
+    --red-color: #CA2124;
+  }
+}
+
 * {
   font-family: 'Hack', monospace;
 }
