@@ -73,7 +73,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
     };
 
     window.addEventListener('changeTheme', handleThemeChange as EventListener);
-    return () => window.removeEventListener('changeTheme', handleThemeChange as EventListener);
+    return () =>
+      window.removeEventListener(
+        'changeTheme',
+        handleThemeChange as EventListener,
+      );
   }, []);
 
   React.useEffect(() => {
@@ -89,7 +93,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <title>{config.title}</title>
       </Head>
 
-      <div className="p-8 overflow-hidden h-full border-2 rounded" style={{ borderColor: 'var(--yellow-color)' }}>
+      <div
+        className="p-8 overflow-hidden h-full border-2 rounded"
+        style={{ borderColor: 'var(--yellow-color)' }}
+      >
         <div ref={containerRef} className="overflow-y-auto h-full">
           <History history={history} />
 

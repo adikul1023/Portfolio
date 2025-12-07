@@ -55,7 +55,7 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
     const minHeight = 50;
     const maxHeight = CANVAS_HEIGHT - PIPE_GAP - 50;
     const topHeight = Math.random() * (maxHeight - minHeight) + minHeight;
-    setPipes(prev => [...prev, { x: CANVAS_WIDTH, topHeight }]);
+    setPipes((prev) => [...prev, { x: CANVAS_WIDTH, topHeight }]);
   }, []);
 
   useEffect(() => {
@@ -88,13 +88,13 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
     }
 
     // Update pipes
-    setPipes(prevPipes => {
+    setPipes((prevPipes) => {
       const newPipes = prevPipes
-        .map(pipe => ({ ...pipe, x: pipe.x - GAME_SPEED }))
-        .filter(pipe => pipe.x > -PIPE_WIDTH);
+        .map((pipe) => ({ ...pipe, x: pipe.x - GAME_SPEED }))
+        .filter((pipe) => pipe.x > -PIPE_WIDTH);
 
       // Check collisions and score
-      newPipes.forEach(pipe => {
+      newPipes.forEach((pipe) => {
         const birdX = 50;
         const birdRight = birdX + BIRD_SIZE;
         const birdBottom = newY + BIRD_SIZE;
@@ -109,7 +109,7 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
 
         // Check if bird passed the pipe (for scoring)
         if (pipe.x + PIPE_WIDTH === birdX) {
-          setScore(prev => prev + 1);
+          setScore((prev) => prev + 1);
         }
       });
 
@@ -133,7 +133,7 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
       if (isExiting) return;
 
       const gameKeys = [' ', 'Escape', 'q', 'r', 'ArrowUp', 'w'];
-      
+
       if (!gameKeys.includes(e.key)) {
         return;
       }
@@ -184,10 +184,14 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
           position: 'relative',
         }}
       >
-        <svg width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ display: 'block' }}>
+        <svg
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          style={{ display: 'block' }}
+        >
           {/* Background */}
           <rect width={CANVAS_WIDTH} height={CANVAS_HEIGHT} fill="#87CEEB" />
-          
+
           {/* Ground */}
           <rect
             y={CANVAS_HEIGHT - 50}
@@ -224,7 +228,7 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
                 stroke="#000"
                 strokeWidth="2"
               />
-              
+
               {/* Bottom pipe */}
               <rect
                 x={pipe.x}
@@ -260,15 +264,12 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
               strokeWidth="2"
             />
             {/* Eye */}
-            <circle
-              cx={50 + BIRD_SIZE - 6}
-              cy={birdY + 8}
-              r={3}
-              fill="#000"
-            />
+            <circle cx={50 + BIRD_SIZE - 6} cy={birdY + 8} r={3} fill="#000" />
             {/* Beak */}
             <polygon
-              points={`${50 + BIRD_SIZE},${birdY + 10} ${50 + BIRD_SIZE + 6},${birdY + 10} ${50 + BIRD_SIZE + 3},${birdY + 13}`}
+              points={`${50 + BIRD_SIZE},${birdY + 10} ${50 + BIRD_SIZE + 6},${
+                birdY + 10
+              } ${50 + BIRD_SIZE + 3},${birdY + 13}`}
               fill="#FFA500"
               stroke="#000"
               strokeWidth="1"
@@ -301,9 +302,7 @@ export const FlappyBird: React.FC<FlappyBirdProps> = ({ onExit }) => {
           </div>
         )}
         {gameStarted && !gameOver && (
-          <div>
-            Controls: [SPACE]/[W]/[↑] Flap | [ESC]/[Q] Exit
-          </div>
+          <div>Controls: [SPACE]/[W]/[↑] Flap | [ESC]/[Q] Exit</div>
         )}
       </div>
     </div>

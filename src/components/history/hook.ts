@@ -10,7 +10,10 @@ export const useHistory = (defaultValue: Array<History>) => {
     history,
     command,
     lastCommandIndex,
-    setHistory: (value: string | React.ReactNode, component?: React.ReactNode) => {
+    setHistory: (
+      value: string | React.ReactNode,
+      component?: React.ReactNode,
+    ) => {
       if (component) {
         setHistory([
           ...history,

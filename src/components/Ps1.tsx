@@ -8,9 +8,7 @@ export const Ps1 = () => {
         {config.ps1_username}
       </span>
       <span style={{ color: 'var(--gray-color)' }}>@</span>
-      <span style={{ color: 'var(--green-color)' }}>
-        {config.ps1_hostname}
-      </span>
+      <span style={{ color: 'var(--green-color)' }}>{config.ps1_hostname}</span>
       <span style={{ color: 'var(--gray-color)' }}>:$ ~ </span>
     </div>
   );

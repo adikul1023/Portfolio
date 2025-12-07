@@ -26,7 +26,10 @@ const App = ({ Component, pageProps }) => {
         style={{ color: 'var(--fg-color)' }}
         onClick={onClickAnywhere}
       >
-        <main className="w-full h-full p-2" style={{ backgroundColor: 'var(--bg-color)' }}>
+        <main
+          className="w-full h-full p-2"
+          style={{ backgroundColor: 'var(--bg-color)' }}
+        >
           <Component {...pageProps} inputRef={inputRef} />
         </main>
       </div>

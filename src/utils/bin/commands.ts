@@ -173,10 +173,9 @@ export const matrix = async (args?: string[]): Promise<string> => {
 };
 
 export const gui = async (args?: string[]): Promise<string> => {
-  window.open("http://adi-kulkarni.in", "_blank");
-  return "Opening graphical interface...";
+  window.open('http://adi-kulkarni.in', '_blank');
+  return 'Opening graphical interface...';
 };
-
 
 export const df = async (args?: string[]): Promise<string> => {
   return `
@@ -206,7 +205,7 @@ rtt min/avg/max/mdev = 14.2/14.6/15.0/0.3 ms`;
 };
 
 export const cat = async (args: string[]): Promise<string> => {
-  if (args[0] === "readme.txt") {
+  if (args[0] === 'readme.txt') {
     return `Welcome to my portfolio! Type 'help' to see available commands.`;
   } else {
     return `cat: ${args[0]}: No such file or directory`;
@@ -223,20 +222,20 @@ export const saveCommand = (cmd: string) => {
   commandHistory.push(cmd);
 };
 
-
 export const pwd = async (): Promise<string> => {
   const locations = [
     "/home/your/mom's/house",
     "/root/but-you-ain't-root",
-    "/var/log/where-am-i",
-    "/usr/bin/looking-for-love",
-    "/dev/null/404-not-found",
-    "/opt/this-is-not-windows",
-    "/home/visitor/lost-and-found"
+    '/var/log/where-am-i',
+    '/usr/bin/looking-for-love',
+    '/dev/null/404-not-found',
+    '/opt/this-is-not-windows',
+    '/home/visitor/lost-and-found',
   ];
-  
+
   // Pick a random location
-  const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+  const randomLocation =
+    locations[Math.floor(Math.random() * locations.length)];
   return randomLocation;
 };
 
@@ -258,14 +257,16 @@ Available themes: ${Object.keys(themes).join(', ')}, light`;
   switch (subcommand) {
     case 'ls':
     case 'list':
-      return `Available themes:\n${Object.keys(themes).map(t => `  - ${t}`).join('\n')}\n  - light\n\nUse 'theme set <name>' to change theme.`;
-    
+      return `Available themes:\n${Object.keys(themes)
+        .map((t) => `  - ${t}`)
+        .join('\n')}\n  - light\n\nUse 'theme set <name>' to change theme.`;
+
     case 'set':
       if (args.length < 2) {
         return 'Error: Please specify a theme name.\nUsage: theme set <theme-name>';
       }
       const themeName = args[1].toLowerCase();
-      
+
       // Easter egg for light theme
       if (themeName === 'light') {
         return `🚨 INTRUDER ALERT! 🚨
@@ -279,22 +280,30 @@ Please reconsider your life choices and try a proper dark theme.
 
 Recommended: dracula, gruvbox, monokai, nord`;
       }
-      
-      const matchedTheme = Object.keys(themes).find(t => t.toLowerCase() === themeName);
-      
+
+      const matchedTheme = Object.keys(themes).find(
+        (t) => t.toLowerCase() === themeName,
+      );
+
       if (matchedTheme) {
         // Dispatch custom event to change theme
-        window.dispatchEvent(new CustomEvent('changeTheme', { detail: matchedTheme }));
+        window.dispatchEvent(
+          new CustomEvent('changeTheme', { detail: matchedTheme }),
+        );
         return `Theme changed to '${matchedTheme}'. Refresh if colors don't update immediately.`;
       } else {
-        return `Error: Theme '${args[1]}' not found.\nAvailable themes: ${Object.keys(themes).join(', ')}, light`;
+        return `Error: Theme '${
+          args[1]
+        }' not found.\nAvailable themes: ${Object.keys(themes).join(
+          ', ',
+        )}, light`;
       }
-    
+
     case 'get':
     case 'current':
       const currentTheme = localStorage.getItem('terminal-theme') || 'gruvbox';
       return `Current theme: ${currentTheme}`;
-    
+
     default:
       return usage;
   }
@@ -326,26 +335,29 @@ Example: encode base64 Hello World`;
     switch (type) {
       case 'base64':
         return btoa(text);
-      
+
       case 'hex':
         return Array.from(text)
-          .map(c => c.charCodeAt(0).toString(16).padStart(2, '0'))
+          .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
           .join('');
-      
+
       case 'url':
         return encodeURIComponent(text);
-      
+
       case 'rot13':
         return text.replace(/[a-zA-Z]/g, (c) => {
           const base = c <= 'Z' ? 65 : 97;
-          return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+          return String.fromCharCode(
+            ((c.charCodeAt(0) - base + 13) % 26) + base,
+          );
         });
-      
+
       case 'binary':
-        return text.split('').map(c => 
-          c.charCodeAt(0).toString(2).padStart(8, '0')
-        ).join(' ');
-      
+        return text
+          .split('')
+          .map((c) => c.charCodeAt(0).toString(2).padStart(8, '0'))
+          .join(' ');
+
       default:
         return `Unknown encoding type: ${type}\nUse 'encode' without arguments for help.`;
     }
@@ -375,26 +387,32 @@ Example: decode base64 SGVsbG8gV29ybGQ=`;
     switch (type) {
       case 'base64':
         return atob(text);
-      
+
       case 'hex':
-        return text.match(/.{1,2}/g)
-          ?.map(byte => String.fromCharCode(parseInt(byte, 16)))
-          .join('') || '';
-      
+        return (
+          text
+            .match(/.{1,2}/g)
+            ?.map((byte) => String.fromCharCode(parseInt(byte, 16)))
+            .join('') || ''
+        );
+
       case 'url':
         return decodeURIComponent(text);
-      
+
       case 'rot13':
         return text.replace(/[a-zA-Z]/g, (c) => {
           const base = c <= 'Z' ? 65 : 97;
-          return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+          return String.fromCharCode(
+            ((c.charCodeAt(0) - base + 13) % 26) + base,
+          );
         });
-      
+
       case 'binary':
-        return text.split(' ')
-          .map(bin => String.fromCharCode(parseInt(bin, 2)))
+        return text
+          .split(' ')
+          .map((bin) => String.fromCharCode(parseInt(bin, 2)))
           .join('');
-      
+
       default:
         return `Unknown decoding type: ${type}\nUse 'decode' without arguments for help.`;
     }
@@ -432,11 +450,15 @@ Example: hash password123`;
     const sha256Promise = crypto.subtle.digest('SHA-256', data);
     const sha512Promise = crypto.subtle.digest('SHA-512', data);
 
-    const [sha1, sha256, sha512] = await Promise.all([sha1Promise, sha256Promise, sha512Promise]);
+    const [sha1, sha256, sha512] = await Promise.all([
+      sha1Promise,
+      sha256Promise,
+      sha512Promise,
+    ]);
 
     const toHex = (buffer: ArrayBuffer) => {
       return Array.from(new Uint8Array(buffer))
-        .map(b => b.toString(16).padStart(2, '0'))
+        .map((b) => b.toString(16).padStart(2, '0'))
         .join('');
     };
 
@@ -464,7 +486,7 @@ Example: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`;
   }
 
   const token = args[0];
-  
+
   try {
     const parts = token.split('.');
     if (parts.length !== 3) {
@@ -474,8 +496,12 @@ Example: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`;
     const [headerB64, payloadB64, signature] = parts;
 
     // Decode header and payload
-    const header = JSON.parse(atob(headerB64.replace(/-/g, '+').replace(/_/g, '/')));
-    const payload = JSON.parse(atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/')));
+    const header = JSON.parse(
+      atob(headerB64.replace(/-/g, '+').replace(/_/g, '/')),
+    );
+    const payload = JSON.parse(
+      atob(payloadB64.replace(/-/g, '+').replace(/_/g, '/')),
+    );
 
     // Format the output
     let result = '🔐 JWT Token Analysis\n\n';
@@ -494,7 +520,9 @@ Example: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`;
       const expDate = new Date(payload.exp * 1000);
       const now = new Date();
       const isExpired = expDate < now;
-      result += `Expiration: ${expDate.toISOString()} ${isExpired ? '⚠️ EXPIRED' : '✓ Valid'}\n`;
+      result += `Expiration: ${expDate.toISOString()} ${
+        isExpired ? '⚠️ EXPIRED' : '✓ Valid'
+      }\n`;
     }
 
     if (payload.iat) {
@@ -552,14 +580,17 @@ where you can check your email securely.`;
   }
 
   const email = args[0];
-  
+
   // Validate email format
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return 'Error: Invalid email format.';
   }
 
   // Open HIBP website
-  window.open(`https://haveibeenpwned.com/account/${encodeURIComponent(email)}`, '_blank');
+  window.open(
+    `https://haveibeenpwned.com/account/${encodeURIComponent(email)}`,
+    '_blank',
+  );
 
   return `🔍 Checking breaches for: ${email}
 
@@ -600,7 +631,7 @@ Note: Uses Google's DNS-over-HTTPS API.`;
     for (const type of types) {
       try {
         const response = await fetch(
-          `https://dns.google/resolve?name=${domain}&type=${type}`
+          `https://dns.google/resolve?name=${domain}&type=${type}`,
         );
         const data = await response.json();
 
@@ -638,11 +669,13 @@ Example: qr Hello World`;
   }
 
   const text = args.join(' ');
-  
+
   try {
     // Using goqr.me API to generate QR code
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
-    
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
+      text,
+    )}`;
+
     return `📱 QR Code Generated!
 
 Text: "${text}"
@@ -669,7 +702,7 @@ Note: Uses TinyURL API (no account required).`;
   }
 
   const url = args[0];
-  
+
   // Validate URL format
   try {
     new URL(url);
@@ -679,14 +712,16 @@ Note: Uses TinyURL API (no account required).`;
 
   try {
     // Using TinyURL API
-    const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
-    
+    const response = await fetch(
+      `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`,
+    );
+
     if (!response.ok) {
       throw new Error('Failed to shorten URL');
     }
 
     const shortUrl = await response.text();
-    
+
     return `🔗 URL Shortened Successfully!
 
 Original URL:
@@ -701,13 +736,15 @@ Note: TinyURL links never expire.`;
   } catch (error) {
     // Fallback to is.gd if TinyURL fails
     try {
-      const response = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`);
+      const response = await fetch(
+        `https://is.gd/create.php?format=simple&url=${encodeURIComponent(url)}`,
+      );
       const shortUrl = await response.text();
-      
+
       if (shortUrl.includes('Error')) {
         throw new Error(shortUrl);
       }
-      
+
       return `🔗 URL Shortened Successfully!
 
 Original URL:
@@ -732,9 +769,9 @@ You can manually shorten at:
 export const cowsay = async (args: string[]): Promise<string> => {
   const message = args.join(' ') || 'Moo!';
   const messageLines = message.match(/.{1,40}/g) || [message];
-  const maxLength = Math.max(...messageLines.map(line => line.length));
+  const maxLength = Math.max(...messageLines.map((line) => line.length));
   const border = '_'.repeat(maxLength + 2);
-  
+
   let bubble = ` ${border}\n`;
   if (messageLines.length === 1) {
     bubble += `< ${messageLines[0].padEnd(maxLength)} >\n`;
@@ -761,13 +798,13 @@ export const cowsay = async (args: string[]): Promise<string> => {
 
 export const dice = async (args: string[]): Promise<string> => {
   const sides = args[0] ? parseInt(args[0]) : 6;
-  
+
   if (isNaN(sides) || sides < 2) {
     return 'Usage: dice [sides]\nExample: dice 6 (default) or dice 20 for D&D';
   }
-  
+
   const roll = Math.floor(Math.random() * sides) + 1;
-  
+
   const diceArt: { [key: number]: string } = {
     1: `
  _______
@@ -806,17 +843,19 @@ export const dice = async (args: string[]): Promise<string> => {
 |_•___•_|
 `,
   };
-  
+
   const art = diceArt[roll] || '';
   return `Rolling a D${sides}...\n${art}\nYou rolled: ${roll}!`;
 };
 
-export const snake = async (args: string[]): Promise<React.ReactElement | string> => {
+export const snake = async (
+  args: string[],
+): Promise<React.ReactElement | string> => {
   // Return the React component
   return React.createElement(SnakeGame, {
     onExit: () => {
       // Game will exit on ESC key
-    }
+    },
   });
 };
 

@@ -39,7 +39,8 @@ export const quote = async (args: string[]): Promise<string> => {
     return data.quote;
   } catch (error) {
     // Use fallback quotes if API fails
-    const randomQuote = fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
+    const randomQuote =
+      fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
     return randomQuote;
   }
 };

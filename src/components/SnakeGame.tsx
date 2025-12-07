@@ -23,7 +23,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
   const [score, setScore] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  
+
   const directionRef = useRef(direction);
   const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -34,7 +34,11 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
         x: Math.floor(Math.random() * GRID_SIZE),
         y: Math.floor(Math.random() * GRID_SIZE),
       };
-    } while (currentSnake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
+    } while (
+      currentSnake.some(
+        (segment) => segment.x === newFood.x && segment.y === newFood.y,
+      )
+    );
     return newFood;
   }, []);
 
@@ -51,7 +55,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
   const moveSnake = useCallback(() => {
     if (gameOver || isPaused) return;
 
-    setSnake(prevSnake => {
+    setSnake((prevSnake) => {
       const head = prevSnake[0];
       const newHead: Position = {
         x: head.x + directionRef.current.x,
@@ -59,13 +63,22 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
       };
 
       // Check collision with walls
-      if (newHead.x < 0 || newHead.x >= GRID_SIZE || newHead.y < 0 || newHead.y >= GRID_SIZE) {
+      if (
+        newHead.x < 0 ||
+        newHead.x >= GRID_SIZE ||
+        newHead.y < 0 ||
+        newHead.y >= GRID_SIZE
+      ) {
         setGameOver(true);
         return prevSnake;
       }
 
       // Check collision with self
-      if (prevSnake.some(segment => segment.x === newHead.x && segment.y === newHead.y)) {
+      if (
+        prevSnake.some(
+          (segment) => segment.x === newHead.x && segment.y === newHead.y,
+        )
+      ) {
         setGameOver(true);
         return prevSnake;
       }
@@ -74,7 +87,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
 
       // Check if food is eaten
       if (newHead.x === food.x && newHead.y === food.y) {
-        setScore(prev => prev + 10);
+        setScore((prev) => prev + 10);
         setFood(generateFood(newSnake));
       } else {
         newSnake.pop();
@@ -92,17 +105,30 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
     const handleKeyPress = (e: KeyboardEvent) => {
       // Don't handle any keys if exiting
       if (isExiting) return;
-      
+
       // Only handle game-related keys
-      const gameKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', ' ', 'r', 'Escape', 'q'];
-      
+      const gameKeys = [
+        'ArrowUp',
+        'ArrowDown',
+        'ArrowLeft',
+        'ArrowRight',
+        'w',
+        'a',
+        's',
+        'd',
+        ' ',
+        'r',
+        'Escape',
+        'q',
+      ];
+
       if (!gameKeys.includes(e.key)) {
         return; // Let other keys pass through
       }
-      
+
       e.preventDefault();
       e.stopPropagation();
-      
+
       if (e.key === 'Escape' || e.key === 'q') {
         setIsExiting(true);
         // Re-focus the input after exiting
@@ -120,12 +146,12 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
       }
 
       if (e.key === ' ') {
-        setIsPaused(prev => !prev);
+        setIsPaused((prev) => !prev);
         return;
       }
 
       const currentDir = directionRef.current;
-      
+
       switch (e.key) {
         case 'ArrowUp':
         case 'w':
@@ -169,7 +195,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
       <div className="mb-2" style={{ color: 'var(--green-color)' }}>
         Score: {score} | Length: {snake.length}
       </div>
-      
+
       <div
         style={{
           display: 'inline-block',
@@ -195,9 +221,9 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
                 stroke="var(--gray-color)"
                 strokeOpacity="0.2"
               />
-            ))
+            )),
           )}
-          
+
           {/* Snake */}
           {snake.map((segment, index) => (
             <rect
@@ -210,7 +236,7 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
               rx={2}
             />
           ))}
-          
+
           {/* Food */}
           <circle
             cx={food.x * CELL_SIZE + CELL_SIZE / 2}
@@ -229,7 +255,9 @@ export const SnakeGame: React.FC<SnakeGameProps> = ({ onExit }) => {
           </div>
         )}
         {isPaused && !gameOver && (
-          <div style={{ color: 'var(--yellow-color)' }}>PAUSED - Press [SPACE] to continue</div>
+          <div style={{ color: 'var(--yellow-color)' }}>
+            PAUSED - Press [SPACE] to continue
+          </div>
         )}
         {!gameOver && !isPaused && (
           <div>

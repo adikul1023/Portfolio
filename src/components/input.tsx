@@ -91,7 +91,10 @@ export const Input = ({
         className="focus:outline-none flex-grow"
         style={{
           backgroundColor: 'var(--bg-color)',
-          color: commandExists(command) || command === '' ? 'var(--green-color)' : 'var(--red-color)'
+          color:
+            commandExists(command) || command === ''
+              ? 'var(--green-color)'
+              : 'var(--red-color)',
         }}
         value={command}
         onChange={onChange}
